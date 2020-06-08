@@ -27,8 +27,20 @@ class MainContainer extends Component {
   };
 
   handleBuyStock = (selectedStock) => {
+    if (this.state.myStocks.indexOf(selectedStock) === -1) {
+      this.setState({
+        myStocks: [...this.state.myStocks, selectedStock],
+      });
+    }
+  };
+
+  handleSellStock = (selectedStock) => {
+    const newStocksArray = this.state.myStocks.filter(
+      (stock) => stock.id !== selectedStock.id
+    );
+
     this.setState({
-      myStocks: [...this.state.myStocks, selectedStock],
+      myStocks: newStocksArray,
     });
   };
 
@@ -76,7 +88,10 @@ class MainContainer extends Component {
             />
           </div>
           <div className="col-4">
-            <PortfolioContainer stocks={myDisplayedStock} />
+            <PortfolioContainer
+              stocks={myDisplayedStock}
+              handleSellStock={this.handleSellStock}
+            />
           </div>
         </div>
       </div>

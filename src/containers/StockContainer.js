@@ -11,7 +11,7 @@ class StockContainer extends Component {
             <Stock
               key={idx}
               stock={stock}
-              handleBuyStock={this.props.handleBuyStock}
+              stockListener={this.props.handleBuyStock}
             />
           );
         })}
